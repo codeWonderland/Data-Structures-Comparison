@@ -1,0 +1,10 @@
+
+*.bin
+
+*.out
+
+*.c
+
+cmake-build-debug/CMakeFiles/3\.8\.2/CompilerIdCXX/
+
+cmake-build-debug/CMakeFiles/
