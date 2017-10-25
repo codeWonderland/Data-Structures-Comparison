@@ -11,40 +11,40 @@
      ********************************************************************/
 
 #include <iostream>
-#include <stdlib.h>
+#include <cstdlib>
 #include <iomanip>
-#include <fstream>
-#include <time.h>
-#include <string>
+#include <ctime>
 #include "timerSystem.h"
+#include "functions.h"
 #include "linkedList.h"
 #include "DoublyLinkedList.h"
 
-const int SIZE = 1000000;
-
 int main()
 {
-	std::ifstream inputFile;
-	std::string line;
 	int *arr;
-	arr = new int[SIZE];
+    std::ifstream inputFile;
+	arr = new int[MAX_SIZE];
 	LinkedList<int> linkedList = LinkedList<int>();
 	DoublyLinkedList<int> doublyLinkedList = DoublyLinkedList<int>();
+    TimerSystem timer;
+    double times[NUM_TESTS][DATA_STRUCTURE][WHICH_TEST];          //ARRAY TO HOLD ALL OF THE TIMES
+    int i;
 
-	
-	int i = 0;
-
-	inputFile.open("output.txt");
-
-	while (!inputFile.eof())
-	{
-		getline(inputFile, line);
-		arr[i] = std::stoi(line);
-		i++;
-	}
+    // CONDUCTS THE ARRAY TESTS
+    inputFile.open(INPUT_FILE);
+    for (i = 0; i < NUM_TESTS; i++)
+    {
+        //Times filling the array
+        timer.startClock();
+        fillArray(arr, inputFile);
+        times[i][ARRAY][CREATE] = timer.getTime();
 
 
 
-	inputFile.close();
+
+        inputFile.clear();
+        inputFile.seekg(0, std::ios::beg);
+    }
+
 	return 0;
 }

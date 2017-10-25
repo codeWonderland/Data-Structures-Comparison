@@ -5,6 +5,13 @@
 
 *.c
 
+CMakeLists.txt
+
 cmake-build-debug/CMakeFiles/3\.8\.2/CompilerIdCXX/
 
 cmake-build-debug/CMakeFiles/
+.idea/
+cmake-build-debug/CMakeCache.txt
+cmake-build-debug/Makefile
+cmake-build-debug/PA5.cbp
+cmake-build-debug/cmake_install.cmake
