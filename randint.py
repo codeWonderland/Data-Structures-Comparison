@@ -3,7 +3,7 @@ import random
 import sys
 
 orig_stdout = sys.stdout
-f = open('output.txt', 'w')
+f = open('data.txt', 'w')
 sys.stdout = f
 
 for i in range(1000000):
