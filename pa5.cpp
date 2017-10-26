@@ -10,8 +10,6 @@
      *     I certify that this assignment is entirely my own work.
      ********************************************************************/
 
-#include <iostream>
-#include <iomanip>
 #include "timerSystem.h"
 #include "functions.h"
 
@@ -21,19 +19,20 @@ int main()
 {
 	int *arr;
     std::ifstream inputFile;
-	arr = new int[MAX_SIZE];
 	LinkedList<int> linkedList = LinkedList<int>();
 	DoublyLinkedList<int> doublyLinkedList = DoublyLinkedList<int>();
     TimerSystem timer;
-    double times[NUM_TESTS][DATA_STRUCTURE][WHICH_TEST];                    //ARRAY TO HOLD ALL OF THE TIMES
-    int i;
-    inputFile.open(INPUT_FILE);
+    double times[NUM_TESTS][DATA_STRUCTURE][WHICH_TEST]; //ARRAY TO HOLD ALL OF THE TIMES
 
+    int i;
     /* * * * * * * * * * * * * * * * * * * * *
      *  CONDUCTS THE ARRAY TESTS
      * * * * * * * * * * * * * * * * * * * * */
+
+    arr = new int[MAX_SIZE];
     for (i = 0; i < NUM_TESTS; i++)
     {
+        inputFile.open(INPUT_FILE);
         //TIMES FILLING THE ARRAY
         timer.startClock();
         fillArray(arr, inputFile);
@@ -53,9 +52,7 @@ int main()
         std::cout << "Array Delete: " << times[i][ARRAY_T][DELETION] << "\n";
 
 
-        // CLEARS THE ifstream AND SETS IT BACK TO THE BEGINNING OF THE FILE
-        inputFile.clear();
-        inputFile.seekg(0, std::ios::beg);
+        inputFile.close();
     }
 
     /* * * * * * * * * * * * * * * * * * * * *
@@ -63,6 +60,7 @@ int main()
      * * * * * * * * * * * * * * * * * * * * */
     for (i = 0; i < NUM_TESTS; i++)
     {
+        inputFile.open(INPUT_FILE);
         //TIMES FILLING THE LinkedList
         timer.startClock();
         fillLinkedList(linkedList, inputFile);
@@ -81,9 +79,7 @@ int main()
         times[i][LINKED_LIST_T][DELETION] = timer.getTime();
         std::cout << "Linked List Delete: " << times[i][LINKED_LIST_T][DELETION] << "\n";
 
-        // CLEARS THE ifstream AND SETS IT BACK TO THE BEGINNING OF THE FILE
-        inputFile.clear();
-        inputFile.seekg(0, std::ios::beg);
+        inputFile.close();
 
         linkedList.clear(); // RESETS THE LinkedList SO IT CAN BE USED FOR THE NEXT TESTS
     }
@@ -93,6 +89,7 @@ int main()
      * * * * * * * * * * * * * * * * * * * * */
     for (i = 0; i < NUM_TESTS; i++)
     {
+        inputFile.open(INPUT_FILE);
         //TIMES FILLING THE DoublyLinkedList
         timer.startClock();
         fillDoublyLinkedList(doublyLinkedList, inputFile);
@@ -112,9 +109,7 @@ int main()
         times[i][DOUBLY_LL_T][DELETION] = timer.getTime();
         std::cout << "Doubly Linked List Delete: " << times[i][DOUBLY_LL_T][DELETION] << "\n";
 
-        // CLEARS THE ifstream AND SETS IT BACK TO THE BEGINNING OF THE FILE
-        inputFile.clear();
-        inputFile.seekg(0, std::ios::beg);
+        inputFile.close();
 
         doublyLinkedList.clear(); // RESETS THE DoublyLinkedList SO IT CAN BE USED FOR THE NEXT TESTS
     }

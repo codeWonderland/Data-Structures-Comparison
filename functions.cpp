@@ -119,9 +119,9 @@ void fillArray(int *arr, std::ifstream &inputFile)
  *     Post:  None
  *  Purpose:  To fill the DoublyLinkedList with MAX_SIZE elements from the inputFile
  ********************************************************************/
-void fillDoublyLinkedList(DoublyLinkedList<int> doublyLinkedList, std::ifstream &inputFile)
+void fillDoublyLinkedList(DoublyLinkedList<int> &doublyLinkedList, std::ifstream &inputFile)
 {
-    int tmp, i = 0;
+    int tmp = 0, i = 0;
     while (!inputFile.eof() && i < MAX_SIZE)
     {
         inputFile >> tmp;

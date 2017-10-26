@@ -266,13 +266,13 @@ bool DoublyLinkedList<T>::insert(T data)
 	}
 	else
 	{
-		if (data >= mHead->mData)
+		if (data <= mHead->mData)
 		{
 			newNode->mNext = mHead;
 			mHead->mPrev = newNode;
 			mHead = newNode;
 		}
-		else if (data <= mTail->mData)
+		else if (data >= mTail->mData)
 		{
 			mTail->mNext = newNode;
 			newNode->mPrev = mTail;
@@ -281,7 +281,7 @@ bool DoublyLinkedList<T>::insert(T data)
 		else
 		{
 			tmp = mHead;
-			while (tmp->mData > data)
+			while (tmp->mData < data)
 			{
 				tmp = tmp->mNext;
 			}
@@ -327,7 +327,7 @@ bool DoublyLinkedList<T>::isExist(T searchKey)
 	{
 		if (tmp->mData == searchKey)
 			found = true;
-		else if (tmp->mData < searchKey)
+		else if (tmp->mData > searchKey)
 			tmp = NULL;
 		else
 			tmp = tmp->mNext;
@@ -357,7 +357,7 @@ bool DoublyLinkedList<T>::remove(T searchKey)
 		{
 			if (tmp->mData == searchKey)
 				found = true;
-			else if (tmp->mData < searchKey)
+			else if (tmp->mData > searchKey)
 				tmp = NULL;
 			else
 			{
@@ -412,32 +412,38 @@ bool DoublyLinkedList<T>::remove(T searchKey)
 template <typename T>
 T DoublyLinkedList<T>::removeAt(int index)
 {
-	Node<T> *tmp;
-	T       data = T();
-	int     i;
+    Node<T> *tmp, *oneBefore;
+    T       data = T();
+    int     i;
 
-	if (index < 0 || index >= mCount);
-	else if (mHead != NULL)
-	{
-		tmp = mHead;
-		for (i = 0; i < index; i++)
-		{
-			tmp = tmp->mNext;
-		}
+    if (index < 0 || index >= mCount);
+    else if (mHead != NULL)
+    {
+        tmp = mHead;
+        oneBefore = mHead;
+        for (i = 0; i < index; i++)
+        {
+            tmp = tmp->mNext;
+        }
 
-		data = tmp->mData;
+        data = tmp->mData;
 
-		if (index == 0)
-			mHead = tmp->mNext;
-		else
-			tmp->mPrev->mNext = tmp->mNext;
+        if (index == 0)
+        {
+            mHead = tmp->mNext;
+        }
+        else
+        {
+            tmp->mPrev->mNext = tmp->mNext;
+            tmp->mNext->mPrev = tmp->mPrev;
+        }
 
-		delete tmp;
+        delete tmp;
 
-		mCount--;
-	}
+        mCount--;
+    }
 
-	return data;
+    return data;
 }
 
 

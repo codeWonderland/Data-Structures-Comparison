@@ -15,11 +15,13 @@
 
 #include <cstdlib>
 #include <fstream>
+#include <iostream>
 #include <string>
+#include <iomanip>
 #include "linkedList.h"
 #include "DoublyLinkedList.h"
 
-const int MAX_SIZE = 1000000;
+const int MAX_SIZE = 100000;
 const std::string INPUT_FILE = "data.txt";
 const std::string OUTPUT_FILE = "output.txt";
 enum TIMES_DATA { NUM_TESTS = 3, DATA_STRUCTURE = 3, WHICH_TEST = 3};
@@ -29,7 +31,7 @@ enum TO_BE_TIMED { FILL = 0, SEARCH = 1, DELETION = 2};
 void arrayRemove(int *arr, const int &toBeDeleted);
 void displayTests(double times[NUM_TESTS][DATA_STRUCTURE][WHICH_TEST]);
 void fillArray(int *arr, std::ifstream &inputFile);
-void fillDoublyLinkedList(DoublyLinkedList<int> doublyLinkedList, std::ifstream &inputFile);
+void fillDoublyLinkedList(DoublyLinkedList<int> &doublyLinkedList, std::ifstream &inputFile);
 void fillLinkedList(LinkedList<int> &linkedList, std::ifstream &inputFile);
 void searchArray(int *arr, const int &searchKey);
 void quickSort(int list[], int lowerBound, int upperBound);
